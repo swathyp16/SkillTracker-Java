@@ -1,4 +1,4 @@
-package com.skill.tracker.model;
+package com.tracker.model;
 
 public class AssociateDetailsModel {
 

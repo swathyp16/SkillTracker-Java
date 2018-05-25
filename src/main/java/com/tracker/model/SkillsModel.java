@@ -1,4 +1,4 @@
-package com.skill.tracker.model;
+package com.tracker.model;
 
 public class SkillsModel {
 	
@@ -27,6 +27,8 @@ public class SkillsModel {
 	public String toString() {
 		return "SkillsModel [skillId=" + skillId + ", skillName=" + skillName + "]";
 	}
+
+	
 	
 	
 

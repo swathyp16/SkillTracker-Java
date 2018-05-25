@@ -1,4 +1,4 @@
-package com.skill.tracker.skill;
+package com.tracker;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
