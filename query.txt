@@ -1,0 +1,2 @@
+mysql> create table skills(skill_id integer NOT NULL,skill_name varchar(20));
+       ALTER TABLE skills MODIFY skill_id INT UNSIGNED AUTO_INCREMENT;
