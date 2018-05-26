@@ -1,5 +1,7 @@
 package com.tracker.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +16,17 @@ public class SkillsDao {
 	
 	
 	public void addSkills(SkillsEntity skillsEntity) {
-		System.out.println("skillsEntity : " + skillsEntity.toString());
 		skillsRepository.save(skillsEntity);
+	}
+	
+	public List<SkillsEntity> viewAllSkills() {
+		List<SkillsEntity> skillList = skillsRepository.findAll();
+		return skillList;
+	}
+	
+	
+	public void deleteSkill(int skillsId) {
+		skillsRepository.deleteById(skillsId);
 	}
 
 }
