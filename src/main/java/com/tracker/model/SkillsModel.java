@@ -6,6 +6,17 @@ public class SkillsModel {
 	private int skillId;
 	
 	private String skillName;
+	
+	private Integer skillRating;
+	
+
+	public Integer getSkillRating() {
+		return skillRating;
+	}
+
+	public void setSkillRating(Integer skillRating) {
+		this.skillRating = skillRating;
+	}
 
 	public int getSkillId() {
 		return skillId;
@@ -25,7 +36,7 @@ public class SkillsModel {
 
 	@Override
 	public String toString() {
-		return "SkillsModel [skillId=" + skillId + ", skillName=" + skillName + "]";
+		return "SkillsModel [skillId=" + skillId + ", skillName=" + skillName + ", skillRating=" + skillRating + "]";
 	}
 
 	
