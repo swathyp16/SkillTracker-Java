@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface SkillsRepository extends JpaRepository<SkillsEntity,Integer> {
 
+	
 }
