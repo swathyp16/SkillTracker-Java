@@ -1,2 +1,8 @@
 mysql> create table skills(skill_id integer NOT NULL,skill_name varchar(20));
        ALTER TABLE skills MODIFY skill_id INT UNSIGNED AUTO_INCREMENT;
+
+create table associate(associate_id integer NOT NULL,name varchar(20),email varchar(40),mobile integer,pic LONGBLOB,remark varchar(100),strength varchar(50), weakness varchar(50));       
+
+create table associate_skills(associate_id integer NOT NULL,skill_id integer);
+
+select associate_id ,name ,email ,mobile,remark ,strength , weakness  from associate; 

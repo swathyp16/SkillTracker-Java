@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.tracker.entity.AssociateSkillsEntity;
 import com.tracker.entity.SkillsEntity;
 import com.tracker.repository.SkillsRepository;
 
@@ -28,5 +29,10 @@ public class SkillsDao {
 	public void deleteSkill(int skillsId) {
 		skillsRepository.deleteById(skillsId);
 	}
+	
+	public List<SkillsEntity> fetchAssociateSkillNamesById(int skillId) {
+		return skillsRepository.findSkillNameById(skillId);
+	}
+	
 
 }

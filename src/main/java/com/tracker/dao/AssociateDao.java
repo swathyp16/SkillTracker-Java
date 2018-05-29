@@ -1,5 +1,7 @@
 package com.tracker.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,8 @@ public class AssociateDao {
 	private AssociateSkillsRepository associateSkillsRepository;
 	
 	
+	
+	
 	public void addAssociate(AssociateEntity associateEntity) {
 		associateRepository.save(associateEntity);
 	}
@@ -25,6 +29,19 @@ public class AssociateDao {
 	public void addAssociateSkills(AssociateSkillsEntity associateSkillsEntity) {
 		associateSkillsRepository.save(associateSkillsEntity);
 	}
+	
+	public byte[] getPicUploaded(int id) {
+		return associateRepository.findPicById(id);
+	}
+	
+	public List<AssociateEntity> fetchAllAssociateDetails(){
+		return associateRepository.findAll();
+	}
+	
+	public List<AssociateSkillsEntity> fetchAssociateSkills() {
+		return associateSkillsRepository.findAll();
+	}
+	
 	
 	
 }

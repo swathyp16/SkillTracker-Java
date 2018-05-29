@@ -1,9 +1,13 @@
 package com.tracker.controller;
 
+
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,5 +51,22 @@ public class AssociateController {
 		return responseString;
 		
 	}
+	
+	@RequestMapping(value="/getAssociatePic/{id}",method=RequestMethod.GET, produces = {MediaType.IMAGE_JPEG_VALUE , MediaType.IMAGE_PNG_VALUE})
+	public byte[] getAssociatePic(@PathVariable int id) throws BusinessException {
+		return associateService.getAssociatePicture(id);
+		
+	}
+	
+	
+	
+	@RequestMapping(value="/viewAllAssociates",method=RequestMethod.GET)
+	public List<AssociateModel> viewAllAssociates() throws BusinessException {
+		List<AssociateModel> associatesList = associateService.fetchAllAssociateDetails();
+		return associatesList;
+		
+	}
+	
+	
 
 }
