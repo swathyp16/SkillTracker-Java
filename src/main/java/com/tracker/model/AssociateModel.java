@@ -26,9 +26,67 @@ public class AssociateModel {
 	private String strength;
 	
 	private String weakness;
-//	
-//	@JsonDeserialize(as = MultipartFile.class)
-//	private MultipartFile picture;
+
+	private boolean statusGreen;
+	
+	private boolean statusBlue;
+	
+	private boolean statusRed;
+	
+	private boolean level1;
+	
+	private boolean level2;
+	
+	private boolean level3;	
+	
+
+	public boolean isStatusGreen() {
+		return statusGreen;
+	}
+
+	public void setStatusGreen(boolean statusGreen) {
+		this.statusGreen = statusGreen;
+	}
+
+	public boolean isStatusBlue() {
+		return statusBlue;
+	}
+
+	public void setStatusBlue(boolean statusBlue) {
+		this.statusBlue = statusBlue;
+	}
+
+	public boolean isStatusRed() {
+		return statusRed;
+	}
+
+	public void setStatusRed(boolean statusRed) {
+		this.statusRed = statusRed;
+	}
+
+	public boolean isLevel1() {
+		return level1;
+	}
+
+	public void setLevel1(boolean level1) {
+		this.level1 = level1;
+	}
+
+	public boolean isLevel2() {
+		return level2;
+	}
+
+	public void setLevel2(boolean level2) {
+		this.level2 = level2;
+	}
+
+	public boolean isLevel3() {
+		return level3;
+	}
+
+	public void setLevel3(boolean level3) {
+		this.level3 = level3;
+	}
 
 	public int getAssociateId() {
 		return associateId;
@@ -106,19 +164,10 @@ public class AssociateModel {
 	public String toString() {
 		return "AssociateModel [associateId=" + associateId + ", name=" + name + ", email=" + email + ", mobileNum="
 				+ mobileNum + ", remark=" + remark + ", associateSkills=" + associateSkills + ", otherSkill="
-				+ otherSkill + ", strength=" + strength + ", weakness=" + weakness + "]";
-	}
-
-//	public MultipartFile getPicture() {
-//		return picture;
-//	}
-//
-//	public void setPicture(MultipartFile picture) {
-//		this.picture = picture;
-//	}
-
-	
-	
+				+ otherSkill + ", strength=" + strength + ", weakness=" + weakness + ", statusGreen=" + statusGreen
+				+ ", statusBlue=" + statusBlue + ", statusRed=" + statusRed + ", level1=" + level1 + ", level2="
+				+ level2 + ", level3=" + level3 + "]";
+	}	
 	
 	
 

@@ -1,5 +1,7 @@
 package com.tracker.entity;
 
+import java.util.Arrays;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -33,6 +35,24 @@ public class AssociateEntity {
 	
 	@Column(name="weakness")
 	private String weakness;
+	
+	@Column(name="status_green")
+	private boolean statusGreen;
+	
+	@Column(name="status_blue")
+	private boolean statusBlue;
+	
+	@Column(name="status_red")
+	private boolean statusRed;
+	
+	@Column(name="level_1")
+	private boolean level1;
+	
+	@Column(name="level_2")
+	private boolean level2;
+	
+	@Column(name="level_3")
+	private boolean level3;
 
 	public int getAssociateId() {
 		return associateId;
@@ -97,6 +117,64 @@ public class AssociateEntity {
 	public void setWeakness(String weakness) {
 		this.weakness = weakness;
 	}
+
+	public boolean isStatusGreen() {
+		return statusGreen;
+	}
+
+	public void setStatusGreen(boolean statusGreen) {
+		this.statusGreen = statusGreen;
+	}
+
+	public boolean isStatusBlue() {
+		return statusBlue;
+	}
+
+	public void setStatusBlue(boolean statusBlue) {
+		this.statusBlue = statusBlue;
+	}
+
+	public boolean isStatusRed() {
+		return statusRed;
+	}
+
+	public void setStatusRed(boolean statusRed) {
+		this.statusRed = statusRed;
+	}
+
+	public boolean isLevel1() {
+		return level1;
+	}
+
+	public void setLevel1(boolean level1) {
+		this.level1 = level1;
+	}
+
+	public boolean isLevel2() {
+		return level2;
+	}
+
+	public void setLevel2(boolean level2) {
+		this.level2 = level2;
+	}
+
+	public boolean isLevel3() {
+		return level3;
+	}
+
+	public void setLevel3(boolean level3) {
+		this.level3 = level3;
+	}
+
+	@Override
+	public String toString() {
+		return "AssociateEntity [associateId=" + associateId + ", name=" + name + ", email=" + email + ", mobile="
+				+ mobile + ", pic=" + Arrays.toString(pic) + ", remark=" + remark + ", strength=" + strength
+				+ ", weakness=" + weakness + ", statusGreen=" + statusGreen + ", statusBlue=" + statusBlue
+				+ ", statusRed=" + statusRed + ", level1=" + level1 + ", level2=" + level2 + ", level3=" + level3 + "]";
+	}
+	
+	
 	
 	
 }

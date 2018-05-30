@@ -55,6 +55,12 @@ public class AssociateServiceImpl implements IAssociateService {
 			associateModel.setRemark(associateEntity.getRemark());
 			associateModel.setStrength(associateEntity.getStrength());
 			associateModel.setWeakness(associateEntity.getWeakness());
+			associateModel.setStatusGreen(associateEntity.isStatusGreen());
+			associateModel.setStatusBlue(associateEntity.isStatusBlue());
+			associateModel.setStatusRed(associateEntity.isStatusRed());
+			associateModel.setLevel1(associateEntity.isLevel1());
+			associateModel.setLevel2(associateEntity.isLevel2());
+			associateModel.setLevel3(associateEntity.isLevel3());
 			mapAssociateSkillsToModel(associateModel,associateEntity);
 			associatesList.add(associateModel);
 		}
@@ -91,6 +97,12 @@ public class AssociateServiceImpl implements IAssociateService {
 		associateEntity.setRemark(associateModel.getRemark());
 		associateEntity.setStrength(associateModel.getStrength());
 		associateEntity.setWeakness(associateModel.getWeakness());
+		associateEntity.setStatusGreen(associateModel.isStatusGreen());
+		associateEntity.setStatusBlue(associateModel.isStatusBlue());
+		associateEntity.setStatusRed(associateModel.isStatusRed());
+		associateEntity.setLevel1(associateModel.isLevel1());
+		associateEntity.setLevel2(associateModel.isLevel2());
+		associateEntity.setLevel3(associateModel.isLevel3());
 		byte[] picInBytes;
 		try {
 			picInBytes = convertMultipartfileToBytes(file);
