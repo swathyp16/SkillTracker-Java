@@ -57,8 +57,7 @@ public class AssociateController {
 		return associateService.getAssociatePicture(id);
 		
 	}
-	
-	
+		
 	
 	@RequestMapping(value="/viewAllAssociates",method=RequestMethod.GET)
 	public List<AssociateModel> viewAllAssociates() throws BusinessException {
@@ -66,6 +65,13 @@ public class AssociateController {
 		return associatesList;
 		
 	}
+	
+	@RequestMapping(value="/deleteAssociate",method=RequestMethod.POST)
+	public String deleteAssociate(@RequestBody AssociateModel associateModel) throws BusinessException {
+		return associateService.deleteAssociate(associateModel.getAssociateId());
+		
+	}
+	
 	
 	
 

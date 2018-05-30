@@ -27,6 +27,7 @@ public class AssociateDao {
 	}
 	
 	public void addAssociateSkills(AssociateSkillsEntity associateSkillsEntity) {
+		System.out.println("associateSkillsEntity :" +associateSkillsEntity.toString());
 		associateSkillsRepository.save(associateSkillsEntity);
 	}
 	
@@ -40,8 +41,11 @@ public class AssociateDao {
 	
 	public List<AssociateSkillsEntity> fetchAssociateSkills() {
 		return associateSkillsRepository.findAll();
-	}
+	}	
 	
+	public void deleteAssociate(int associateId) {
+		associateRepository.deleteById(associateId);
+	}
 	
 	
 }

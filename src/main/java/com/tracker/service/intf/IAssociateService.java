@@ -14,4 +14,6 @@ public interface IAssociateService {
 	byte[] getAssociatePicture(int id);
 	
 	List<AssociateModel> fetchAllAssociateDetails();
+	
+	String deleteAssociate(int id);
 }

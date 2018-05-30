@@ -33,7 +33,7 @@ public class AssociateServiceImpl implements IAssociateService {
 		AssociateSkillsEntity associateSkillsEntity = new AssociateSkillsEntity();
 		setDataToAssociateEntity(associateEntity, associateModel,file);
 		associateDao.addAssociate(associateEntity);
-		saveAssociateSkills(associateSkillsEntity,associateModel);
+		saveAssociateSkills(associateModel);
 		return CommonConstants.SUCCESS_STRING; 
 		
 	}
@@ -120,11 +120,21 @@ public class AssociateServiceImpl implements IAssociateService {
 		}
 	}
 	
-	private void saveAssociateSkills(AssociateSkillsEntity associateSkillsEntity,AssociateModel associateModel) {
+	private void saveAssociateSkills(AssociateModel associateModel) {
+		AssociateSkillsEntity associateSkillsEntity = null;
+		List<AssociateSkillsEntity> associateSkillList = new ArrayList<AssociateSkillsEntity>();
 		for(SkillsModel skillModel :associateModel.getAssociateSkills()) {
+			associateSkillsEntity = new AssociateSkillsEntity();
 			associateSkillsEntity.setAssociateId(associateModel.getAssociateId());
 			associateSkillsEntity.setSkillId(skillModel.getSkillId());
 			associateDao.addAssociateSkills(associateSkillsEntity);
-		}
+			//associateSkillList.add(associateSkillsEntity);
+		}	
+		
+	}
+	
+	public String deleteAssociate(int id) {
+		associateDao.deleteAssociate(id);
+		return CommonConstants.SUCCESS_STRING; 
 	}
 }
