@@ -20,6 +20,9 @@ public class SkillServiceImpl implements ISkillService{
 
 	public String addSkill(SkillsModel skillsModel) {
 		SkillsEntity skillsEntity = new SkillsEntity();
+		if(Integer.toString(skillsModel.getSkillId())!= null) {
+			skillsEntity.setSkillId(skillsModel.getSkillId());
+		}
 		skillsEntity.setSkillName(skillsModel.getSkillName());
 		skillsDao.addSkills(skillsEntity);
 		return CommonConstants.SUCCESS_STRING; 

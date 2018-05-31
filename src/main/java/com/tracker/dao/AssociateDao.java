@@ -26,9 +26,9 @@ public class AssociateDao {
 		associateRepository.save(associateEntity);
 	}
 	
-	public void addAssociateSkills(AssociateSkillsEntity associateSkillsEntity) {
+	public void addAssociateSkills(List<AssociateSkillsEntity> associateSkillsEntity) {
 		System.out.println("associateSkillsEntity :" +associateSkillsEntity.toString());
-		associateSkillsRepository.save(associateSkillsEntity);
+		associateSkillsRepository.saveAll(associateSkillsEntity);
 	}
 	
 	public byte[] getPicUploaded(int id) {

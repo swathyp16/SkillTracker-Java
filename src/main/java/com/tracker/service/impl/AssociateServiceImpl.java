@@ -30,10 +30,10 @@ public class AssociateServiceImpl implements IAssociateService {
 
 	public String addAssociate(AssociateModel associateModel,MultipartFile file) throws BusinessException {
 		AssociateEntity associateEntity = new AssociateEntity();
-		AssociateSkillsEntity associateSkillsEntity = new AssociateSkillsEntity();
+		//AssociateSkillsEntity associateSkillsEntity = new AssociateSkillsEntity();
 		setDataToAssociateEntity(associateEntity, associateModel,file);
+		mapAssociateSkills(associateModel,associateEntity);
 		associateDao.addAssociate(associateEntity);
-		saveAssociateSkills(associateModel);
 		return CommonConstants.SUCCESS_STRING; 
 		
 	}
@@ -120,16 +120,26 @@ public class AssociateServiceImpl implements IAssociateService {
 		}
 	}
 	
-	private void saveAssociateSkills(AssociateModel associateModel) {
-		AssociateSkillsEntity associateSkillsEntity = null;
-		List<AssociateSkillsEntity> associateSkillList = new ArrayList<AssociateSkillsEntity>();
+	private void mapAssociateSkills(AssociateModel associateModel,AssociateEntity associateEntity) {
+//		AssociateSkillsEntity associateSkillsEntity = null;
+//		List<AssociateSkillsEntity> associateSkillEntityList = new ArrayList<AssociateSkillsEntity>();
+//		for(SkillsModel skillModel :associateModel.getAssociateSkills()) {
+//			associateSkillsEntity = new AssociateSkillsEntity();
+//			associateSkillsEntity.setAssociateId(associateModel.getAssociateId());
+//			associateSkillsEntity.setSkillId(skillModel.getSkillId());
+//			associateSkillEntityList.add(associateSkillsEntity);
+//		}	
+//		associateEntity.setAssociateSkillsEntity(associateSkillEntityList);
+		//associateDao.addAssociateSkills(associateSkillList);
+		List<SkillsEntity> skillsEntityList = new ArrayList<SkillsEntity>();
+		SkillsEntity skillsEntity = null;
 		for(SkillsModel skillModel :associateModel.getAssociateSkills()) {
-			associateSkillsEntity = new AssociateSkillsEntity();
-			associateSkillsEntity.setAssociateId(associateModel.getAssociateId());
-			associateSkillsEntity.setSkillId(skillModel.getSkillId());
-			associateDao.addAssociateSkills(associateSkillsEntity);
-			//associateSkillList.add(associateSkillsEntity);
-		}	
+			skillsEntity = new SkillsEntity();
+			skillsEntity.setSkillId(skillModel.getSkillId());
+			skillsEntity.setSkillName(skillModel.getSkillName());
+			skillsEntityList.add(skillsEntity);
+		}		
+		associateEntity.setSkills(skillsEntityList);
 		
 	}
 	

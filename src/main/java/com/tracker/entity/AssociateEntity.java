@@ -1,10 +1,19 @@
 package com.tracker.entity;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -53,6 +62,14 @@ public class AssociateEntity {
 	
 	@Column(name="level_3")
 	private boolean level3;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "associate_skills", joinColumns = { 
+			@JoinColumn(name = "associate_id", nullable = false, updatable = false) }, 
+			inverseJoinColumns = { @JoinColumn(name = "skill_id", 
+					nullable = false, updatable = false) })
+	private List<SkillsEntity> skills;//= new ArrayList<AssociateSkillsEntity>();
+	 
 
 	public int getAssociateId() {
 		return associateId;
@@ -164,6 +181,47 @@ public class AssociateEntity {
 
 	public void setLevel3(boolean level3) {
 		this.level3 = level3;
+	}
+	
+	public List<SkillsEntity> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<SkillsEntity> skills) {
+		this.skills = skills;
+	}
+	
+	public AssociateEntity() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+
+	public AssociateEntity(String name, String email, int mobile, byte[] pic, String remark,
+			String strength, String weakness, boolean statusGreen, boolean statusBlue, boolean statusRed,
+			boolean level1, boolean level2, boolean level3, List<SkillsEntity> skills) {
+		super();
+		//this.associateId = associateId;
+		this.name = name;
+		this.email = email;
+		this.mobile = mobile;
+		this.pic = pic;
+		this.remark = remark;
+		this.strength = strength;
+		this.weakness = weakness;
+		this.statusGreen = statusGreen;
+		this.statusBlue = statusBlue;
+		this.statusRed = statusRed;
+		this.level1 = level1;
+		this.level2 = level2;
+		this.level3 = level3;
+		this.skills = skills;
+	}
+
+	public AssociateEntity(String name, List<SkillsEntity> skills) {
+		//this.associateId = associateId;
+		this.name = name;
+		this.skills = skills;
 	}
 
 	@Override
