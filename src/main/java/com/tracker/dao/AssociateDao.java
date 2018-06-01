@@ -41,16 +41,11 @@ public class AssociateDao {
 	public List<Integer> fetchAssociateSkills(Integer associateId) {
 		List<Integer> skillIdList = new ArrayList<Integer>();
 		List<AssociateSkillsEntity> associateSkillsList = associateSkillsRepository.findSkillsById(associateId);
-		System.out.println("associateSkillsList :" +associateSkillsList.toString());
-		//Integer skillId = null;
 		if(!CollectionUtils.isEmpty(associateSkillsList)) {
 			for(AssociateSkillsEntity associateSkillsEntity : associateSkillsList) {
 				skillIdList.add(associateSkillsEntity.getSkillId());
-				//associateSkillsEntity = 
-			//associateSkillsList.add(associateSkillsEntity);
 			}
-		}		
-		System.out.println("skillIdList :" +skillIdList.toString());
+		}	
 		return skillIdList;
 	}	
 	

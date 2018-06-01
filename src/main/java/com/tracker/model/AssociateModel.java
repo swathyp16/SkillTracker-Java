@@ -1,11 +1,6 @@
 package com.tracker.model;
 
-import java.util.Arrays;
 import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class AssociateModel {
 	

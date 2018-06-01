@@ -18,9 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tracker.exception.BusinessException;
 import com.tracker.model.AssociateModel;
-import com.tracker.model.SkillsModel;
 import com.tracker.service.intf.IAssociateService;
-import com.tracker.service.intf.ISkillService;
 
 @CrossOrigin
 @RestController
@@ -39,9 +37,6 @@ public class AssociateController {
 		} catch (IOException e1) {
 			throw new BusinessException(e1.toString());
 		}
-		System.out.println("*****************************************");
-		System.out.println("associateModel : " + associateModel +" file : "+ file.getName());
-		System.out.println("*****************************************");
 		String responseString = null;
 		try {
 			responseString = associateService.addAssociate(associateModel,file);

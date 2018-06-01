@@ -1,14 +1,10 @@
 package com.tracker.entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,7 +19,6 @@ public class SkillsEntity {
 	@Column(name="skill_name")
 	private String skillName;
 	
-	//private List<AssociateEntity> associateEntity;
 
 	public int getSkillId() {
 		return skillId;
@@ -40,17 +35,7 @@ public class SkillsEntity {
 	public void setSkillName(String skillName) {
 		this.skillName = skillName;
 	}
-	
-//	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "skillsEntity")
-//	public List<AssociateEntity> getAssociateEntity() {
-//		return associateEntity;
-//	}
-//
-//	public void setAssociateEntity(List<AssociateEntity> associateEntity) {
-//		this.associateEntity = associateEntity;
-//	}
-	
-	
+
 
 	@Override
 	public String toString() {
@@ -59,7 +44,6 @@ public class SkillsEntity {
 
 	public SkillsEntity(String skillName) {
 		super();
-		//this.skillId = skillId;
 		this.skillName = skillName;
 	}
 	
