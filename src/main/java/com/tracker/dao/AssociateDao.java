@@ -58,5 +58,9 @@ public class AssociateDao {
 		return associateRepository.fetchDistinctAssociates();
 	}
 	
+	public void saveSkillRating(int skillId, int associateId, int skillRating) {
+		associateSkillsRepository.saveSkillRating(associateId,skillId,skillRating);
+	}
+	
 	
 }

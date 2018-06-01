@@ -22,9 +22,6 @@ public class AddSkillController {
 	
 	@RequestMapping(value="/addSkill",method=RequestMethod.POST)
 	public String addSkill(@RequestBody SkillsModel skillsModel) {
-		System.out.println("*****************************************");
-		System.out.println("skillsModel : " + skillsModel);
-		System.out.println("*****************************************");
 		String responseString = null;
 		try {
 			responseString = skillService.addSkill(skillsModel);
@@ -49,10 +46,6 @@ public class AddSkillController {
 	
 	@RequestMapping(value="/deleteSkill",method=RequestMethod.POST)
 	public String deleteSkill(@RequestBody SkillsModel skillsModel) {
-		System.out.println("*****************************************");
-		System.out.println("Inside DELETE SKILLS");
-		System.out.println("skillsModel : " + skillsModel.toString());
-		System.out.println("*****************************************");
 		String responseString = null;
 		try {
 			responseString = skillService.deleteSkill(skillsModel);

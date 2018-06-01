@@ -33,7 +33,15 @@ public class AssociateServiceImpl implements IAssociateService {
 		setDataToAssociateEntity(associateEntity, associateModel,file);
 		mapAssociateSkills(associateModel,associateEntity);
 		associateDao.addAssociate(associateEntity);
+		saveAssociateRating(associateModel);
 		return CommonConstants.SUCCESS_STRING; 
+		
+	}
+	
+	private void saveAssociateRating(AssociateModel associateModel) {
+		for(SkillsModel skillsModel : associateModel.getAssociateSkills()) {
+			associateDao.saveSkillRating(skillsModel.getSkillId(),associateModel.getAssociateId(),skillsModel.getSkillRating());
+		}
 		
 	}
 	

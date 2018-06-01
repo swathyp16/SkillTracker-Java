@@ -28,6 +28,9 @@ public class AssociateSkillsEntity implements Serializable {
 	@Column(name="skill_id")
 	private int skillId;
 	
+	@Column(name="skill_rating")
+	private int skillRating;
+	
 	public int getAssociateId() {
 		return associateId;
 	}
@@ -42,14 +45,21 @@ public class AssociateSkillsEntity implements Serializable {
 
 	public void setSkillId(int skillId) {
 		this.skillId = skillId;
-	}	
+	}		
+
+	public int getSkillRating() {
+		return skillRating;
+	}
+
+	public void setSkillRating(int skillRating) {
+		this.skillRating = skillRating;
+	}
 
 	@Override
 	public String toString() {
-		return "AssociateSkillsEntity [associateId=" + associateId + ", skillId=" + skillId + "]";
+		return "AssociateSkillsEntity [associateId=" + associateId + ", skillId=" + skillId + ", skillRating="
+				+ skillRating + "]";
 	}
-	
-	
 	
 	
 }
