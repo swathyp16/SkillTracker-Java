@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface SkillsRepository extends JpaRepository<SkillsEntity,Integer> {
 
 	@Query(value=QueryConstants.FETCH_SKILL_NAME_BY_ID)
-	List<SkillsEntity> findSkillNameById(int skillId);
+	List<SkillsEntity> findSkillNameById(List<Integer> associateSkillIdList);
 	
 }

@@ -1,9 +1,11 @@
 package com.tracker.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import com.tracker.entity.AssociateEntity;
 import com.tracker.entity.AssociateSkillsEntity;
@@ -17,9 +19,7 @@ public class AssociateDao {
 	private AssociateRepository associateRepository;
 	
 	@Autowired
-	private AssociateSkillsRepository associateSkillsRepository;
-	
-	
+	private AssociateSkillsRepository associateSkillsRepository;	
 	
 	
 	public void addAssociate(AssociateEntity associateEntity) {
@@ -27,7 +27,6 @@ public class AssociateDao {
 	}
 	
 	public void addAssociateSkills(List<AssociateSkillsEntity> associateSkillsEntity) {
-		System.out.println("associateSkillsEntity :" +associateSkillsEntity.toString());
 		associateSkillsRepository.saveAll(associateSkillsEntity);
 	}
 	
@@ -39,12 +38,29 @@ public class AssociateDao {
 		return associateRepository.findAll();
 	}
 	
-	public List<AssociateSkillsEntity> fetchAssociateSkills() {
-		return associateSkillsRepository.findAll();
+	public List<Integer> fetchAssociateSkills(Integer associateId) {
+		List<Integer> skillIdList = new ArrayList<Integer>();
+		List<AssociateSkillsEntity> associateSkillsList = associateSkillsRepository.findSkillsById(associateId);
+		System.out.println("associateSkillsList :" +associateSkillsList.toString());
+		//Integer skillId = null;
+		if(!CollectionUtils.isEmpty(associateSkillsList)) {
+			for(AssociateSkillsEntity associateSkillsEntity : associateSkillsList) {
+				skillIdList.add(associateSkillsEntity.getSkillId());
+				//associateSkillsEntity = 
+			//associateSkillsList.add(associateSkillsEntity);
+			}
+		}		
+		System.out.println("skillIdList :" +skillIdList.toString());
+		return skillIdList;
 	}	
 	
 	public void deleteAssociate(int associateId) {
 		associateRepository.deleteById(associateId);
+	}
+	
+	
+	public List<Integer> fetchDistinctAssociates(){
+		return associateRepository.fetchDistinctAssociates();
 	}
 	
 	

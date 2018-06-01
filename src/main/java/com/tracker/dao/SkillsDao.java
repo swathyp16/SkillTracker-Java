@@ -30,8 +30,8 @@ public class SkillsDao {
 		skillsRepository.deleteById(skillsId);
 	}
 	
-	public List<SkillsEntity> fetchAssociateSkillNamesById(int skillId) {
-		return skillsRepository.findSkillNameById(skillId);
+	public List<SkillsEntity> fetchAssociateSkillNamesById(List<Integer> associateSkillIdList) {		
+		return skillsRepository.findSkillNameById(associateSkillIdList);
 	}
 	
 

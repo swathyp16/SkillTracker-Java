@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tracker.constants.CommonConstants;
@@ -61,25 +62,112 @@ public class AssociateServiceImpl implements IAssociateService {
 			associateModel.setLevel1(associateEntity.isLevel1());
 			associateModel.setLevel2(associateEntity.isLevel2());
 			associateModel.setLevel3(associateEntity.isLevel3());
-			mapAssociateSkillsToModel(associateModel,associateEntity);
+			//mapAssociateSkillsToModel(associateModel,associateEntity);
 			associatesList.add(associateModel);
 		}
+		findApplicableAssociateIds(associatesList);
 		return associatesList;
 	}
 	
-	
-	private void mapAssociateSkillsToModel(AssociateModel associateModel,AssociateEntity associateEntity) {
-		List<AssociateSkillsEntity> associateSkillsEntities = associateDao.fetchAssociateSkills();
-		List<SkillsModel> associateSkillList = new ArrayList<SkillsModel>();
-		for(AssociateSkillsEntity associateSkillsEntity: associateSkillsEntities) {
-			if(associateSkillsEntity.getAssociateId() == associateEntity.getAssociateId()) {
-				List<SkillsEntity> skillList = skillsDao.fetchAssociateSkillNamesById(associateSkillsEntity.getSkillId());
-				mapAssociateSkills(skillList,associateSkillList);
+	private void findApplicableAssociateIds(List<AssociateModel> associatesList) {
+		List<Integer> associateIdList = associateDao.fetchDistinctAssociates();
+		System.out.println("associateIdList :  " + associateIdList.toString());
+		for(Integer associateId : associateIdList) {
+			List<Integer> associateSkillIdList = associateDao.fetchAssociateSkills(associateId);
+			System.out.println("associateSkillIdList :  " + associateSkillIdList.toString());
+			List<SkillsEntity> skillList = skillsDao.fetchAssociateSkillNamesById(associateSkillIdList);
+			//List<SkillsModel>  skillModelList = new ArrayList<SkillsModel>();
+			SkillsModel skillsModel = null;
+			for(SkillsEntity skillsEntity : skillList) {
+				skillsModel = new SkillsModel();
+				skillsModel.setSkillId(skillsEntity.getSkillId());
+				skillsModel.setSkillName(skillsEntity.getSkillName());
+				setSkillToAssociateModel(associatesList,associateId,skillsModel);
+				//skillModelList.add(skillsModel);
+			}
+			
+		}
+		
+	}	
+		private void setSkillToAssociateModel(List<AssociateModel> associatesList,Integer associateId,SkillsModel skillsModel){
+			int i = 0;
+			List<SkillsModel>  newSkillList = new ArrayList<SkillsModel>();
+			for(AssociateModel associateModel : associatesList) {
+				if(associateModel.getAssociateId() == associateId) {
+					if(!CollectionUtils.isEmpty(associatesList.get(i).getAssociateSkills())) {
+						associatesList.get(i).getAssociateSkills().add(skillsModel);
+					} else {
+						associatesList.get(i).setAssociateSkills(newSkillList);
+						associatesList.get(i).getAssociateSkills().add(skillsModel);
+					}
+					
+				}
+				i++;
 			}
 		}
+		
+		
+//		//List<SkillsModel> associateSkillList = new ArrayList<SkillsModel>();
+//		int i= 0;
+//		while(i<associatesList.size()) {
+//			for(AssociateSkillsEntity associateSkillsEntity: associateSkillsEntities) {
+//				if(associateSkillsEntity.getAssociateId() == associatesList.get(i).getAssociateId()) {
+//					List<SkillsModel> skillList = mapAssociateSkillsToModel(associateSkillsEntity);
+//					associatesList.get(i).setAssociateSkills(skillList);
+//				}
+//			}
+//			i++;
+//		}		
+	//}
+	
+//	private void findApplicableAssociateIds(List<AssociateModel> associatesList) {
+//		List<Integer> associateIdList = associateDao.fetchDistinctAssociates();
+//		List<AssociateSkillsEntity> associateSkillsEntities = associateDao.fetchAssociateSkills();
+//		System.out.println("associateSkillsEntities :  " + associateSkillsEntities.toString());
+//		//List<SkillsModel> associateSkillList = new ArrayList<SkillsModel>();
+//		int i= 0;
+//		while(i<associatesList.size()) {
+//			for(AssociateSkillsEntity associateSkillsEntity: associateSkillsEntities) {
+//				if(associateSkillsEntity.getAssociateId() == associatesList.get(i).getAssociateId()) {
+//					List<SkillsModel> skillList = mapAssociateSkillsToModel(associateSkillsEntity);
+//					associatesList.get(i).setAssociateSkills(skillList);
+//				}
+//			}
+//			i++;
+//		}		
+//	}
+	
+//	private void mapAssociateSkillsToModel(AssociateModel associateModel,AssociateEntity associateEntity) {
+//		List<AssociateSkillsEntity> associateSkillsEntities = associateDao.fetchAssociateSkills();
+//		System.out.println("associateSkillsEntities :  " + associateSkillsEntities.toString());
+//		List<SkillsEntity> skillList = new ArrayList<SkillsEntity>();
+//		for(AssociateSkillsEntity associateSkillsEntity: associateSkillsEntities) {
+//			if(associateSkillsEntity.getAssociateId() == associateEntity.getAssociateId()) {
+//				skillList = skillsDao.fetchAssociateSkillNamesById(associateSkillsEntity.getSkillId());
+//				System.out.println("AssociateId : " + associateSkillsEntity.getAssociateId()+"***************  skillList :**************** :  "+ skillList.toString());	
+//			}
+//		}
+//		mapAssociateSkills(skillList,associateModel);
+//	}
+	
+	private void mapAssociateSkillsToModel(AssociateSkillsEntity associateSkillsEntity) {
+//		List<AssociateSkillsEntity> associateSkillsEntities = associateDao.fetchAssociateSkills();
+		System.out.println("associateSkillsEntity :  " + associateSkillsEntity.toString());
+		//List<SkillsEntity> skillList = skillsDao.fetchAssociateSkillNamesById(associateSkillsEntity.getSkillId());
+//		for(AssociateModel associateModel : associatesList) {
+//			for(AssociateSkillsEntity associateSkillsEntity: associateSkillsEntities) {
+//				if(associateSkillsEntity.getAssociateId() == associateModel.getAssociateId()) {
+					//skillList = 
+//					System.out.println("AssociateId : " + associateSkillsEntity.getAssociateId()+"***************  skillList :**************** :  "+ skillList.toString());	
+//				}
+//			}
+//			
+//		}		
+		//return mapAssociateSkills(skillList);
 	}
 	
-	private void mapAssociateSkills(List<SkillsEntity> skillList,List<SkillsModel> associateSkillList) {
+	private List<SkillsModel> mapAssociateSkills(List<SkillsEntity> skillList) {
+		List<SkillsModel> associateSkillList = new ArrayList<SkillsModel>();
 		SkillsModel skillsModel = null;
 		for(SkillsEntity skillsEntity:skillList) {
 			skillsModel = new SkillsModel();
@@ -87,7 +175,28 @@ public class AssociateServiceImpl implements IAssociateService {
 			skillsModel.setSkillName(skillsEntity.getSkillName());
 			associateSkillList.add(skillsModel);
 		}
+		return associateSkillList;
+		//associateModel.setAssociateSkills(associateSkillList);
+		//for(associateSkillList)
 	}
+	
+//	
+//	private void mapAssociateSkills(List<SkillsEntity> skillList,List<AssociateModel> associateModelList) {
+//		List<SkillsModel> associateSkillList = new ArrayList<SkillsModel>();
+//		SkillsModel skillsModel = null;
+//		AssociateModel associateModels = null;
+//		for(SkillsEntity skillsEntity:skillList) {
+//			skillsModel = new SkillsModel();
+//			associateModels = new AssociateModel();
+//			skillsModel.setSkillId(skillsEntity.getSkillId());
+//			skillsModel.setSkillName(skillsEntity.getSkillName());
+//			associateSkillList.add(skillsModel);
+//			associateModels.setAssociateSkills(associateSkillList);
+//		}
+//		associateModelList.add(associateModels);
+//	}
+	
+
 	
 	private void setDataToAssociateEntity(AssociateEntity associateEntity,AssociateModel associateModel,MultipartFile file) throws BusinessException {
 		associateEntity.setAssociateId(associateModel.getAssociateId());
