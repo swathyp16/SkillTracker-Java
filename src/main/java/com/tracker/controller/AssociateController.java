@@ -61,9 +61,15 @@ public class AssociateController {
 		
 	}
 	
-	@RequestMapping(value="/deleteAssociate",method=RequestMethod.POST)
-	public String deleteAssociate(@RequestBody AssociateModel associateModel) throws BusinessException {
-		return associateService.deleteAssociate(associateModel.getAssociateId());
+//	@RequestMapping(value="/deleteAssociate",method=RequestMethod.POST)
+//	public String deleteAssociate(@RequestBody AssociateModel associateModel) throws BusinessException {
+//		return associateService.deleteAssociate(associateModel.getAssociateId());
+//		
+//	}
+	
+	@RequestMapping(value="/deleteAssociate/{associateId}",method=RequestMethod.GET)
+	public String deleteAssociate(@PathVariable int associateId) throws BusinessException {
+		return associateService.deleteAssociate(associateId);
 		
 	}
 	
