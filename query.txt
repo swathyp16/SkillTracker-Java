@@ -3,6 +3,6 @@ mysql> create table skills(skill_id integer NOT NULL,skill_name varchar(20));
 
 create table associate(associate_id integer NOT NULL,name varchar(20),email varchar(40),mobile integer,pic LONGBLOB, status_green boolean,status_blue boolean,status_red boolean,level_1 boolean,level_2 boolean,level_3 boolean,remark varchar(100),strength varchar(50), weakness varchar(50));       
 
-create table associate_skills(associate_id integer NOT NULL,skill_id integer);
+create table associate_skills(associate_id integer NOT NULL,skill_id integer,skill_rating integer);
 
 select associate_id ,name ,email ,mobile,remark ,strength , weakness  from associate; 

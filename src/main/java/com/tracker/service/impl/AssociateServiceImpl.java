@@ -16,6 +16,7 @@ import com.tracker.entity.AssociateEntity;
 import com.tracker.entity.SkillsEntity;
 import com.tracker.exception.BusinessException;
 import com.tracker.model.AssociateModel;
+import com.tracker.model.SkillRatingModel;
 import com.tracker.model.SkillsModel;
 import com.tracker.service.intf.IAssociateService;
 
@@ -77,19 +78,34 @@ public class AssociateServiceImpl implements IAssociateService {
 	private void findApplicableAssociateIds(List<AssociateModel> associatesList) {
 		List<Integer> associateIdList = associateDao.fetchDistinctAssociates();
 		for(Integer associateId : associateIdList) {
-			List<Integer> associateSkillIdList = associateDao.fetchAssociateSkills(associateId);
-			List<SkillsEntity> skillList = skillsDao.fetchAssociateSkillNamesById(associateSkillIdList);
+			List<SkillRatingModel> associateSkillIdList = associateDao.fetchAssociateSkills(associateId);
+			List<Integer> skillIdList = fetchAllSkillIds(associateSkillIdList);
+			List<SkillsEntity> skillList = skillsDao.fetchAssociateSkillNamesById(skillIdList);
 			SkillsModel skillsModel = null;
+			int i= 0;
 			for(SkillsEntity skillsEntity : skillList) {
 				skillsModel = new SkillsModel();
 				skillsModel.setSkillId(skillsEntity.getSkillId());
 				skillsModel.setSkillName(skillsEntity.getSkillName());
+				if(associateSkillIdList.get(i).getSkillId() == skillsEntity.getSkillId()) {
+					skillsModel.setSkillRating(associateSkillIdList.get(i).getSkillRating());
+				}				
 				setSkillToAssociateModel(associatesList,associateId,skillsModel);
+				i++;
 			}
 			
 		}
 		
 	}	
+	
+	private List<Integer> fetchAllSkillIds(List<SkillRatingModel> skillRatingModel){
+		List<Integer> skillIdList = new ArrayList<Integer>();
+		for(SkillRatingModel model :skillRatingModel) {
+			skillIdList.add(model.getSkillId());
+		}
+		return skillIdList;
+		
+	}
 		private void setSkillToAssociateModel(List<AssociateModel> associatesList,Integer associateId,SkillsModel skillsModel){
 			int i = 0;
 			List<SkillsModel>  newSkillList = new ArrayList<SkillsModel>();

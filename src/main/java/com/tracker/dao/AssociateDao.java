@@ -9,6 +9,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.tracker.entity.AssociateEntity;
 import com.tracker.entity.AssociateSkillsEntity;
+import com.tracker.model.SkillRatingModel;
 import com.tracker.repository.AssociateRepository;
 import com.tracker.repository.AssociateSkillsRepository;
 
@@ -38,12 +39,16 @@ public class AssociateDao {
 		return associateRepository.findAll();
 	}
 	
-	public List<Integer> fetchAssociateSkills(Integer associateId) {
-		List<Integer> skillIdList = new ArrayList<Integer>();
+	public List<SkillRatingModel> fetchAssociateSkills(Integer associateId) {
+		List<SkillRatingModel> skillIdList = new ArrayList<SkillRatingModel>();
+		SkillRatingModel skillRatingModel = null;
 		List<AssociateSkillsEntity> associateSkillsList = associateSkillsRepository.findSkillsById(associateId);
 		if(!CollectionUtils.isEmpty(associateSkillsList)) {
 			for(AssociateSkillsEntity associateSkillsEntity : associateSkillsList) {
-				skillIdList.add(associateSkillsEntity.getSkillId());
+				skillRatingModel = new SkillRatingModel();
+				skillRatingModel.setSkillId(associateSkillsEntity.getSkillId());
+				skillRatingModel.setSkillRating(associateSkillsEntity.getSkillRating());
+				skillIdList.add(skillRatingModel);
 			}
 		}	
 		return skillIdList;
