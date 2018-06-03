@@ -59,6 +59,9 @@ public class AssociateEntity {
 	@Column(name="level_3")
 	private boolean level3;
 	
+	@Column(name="gender")
+	private String gender;
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "associate_skills", joinColumns = { 
 			@JoinColumn(name = "associate_id", nullable = false, updatable = false) }, 
@@ -177,8 +180,16 @@ public class AssociateEntity {
 
 	public void setLevel3(boolean level3) {
 		this.level3 = level3;
-	}
+	}	
 	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public List<SkillsEntity> getSkills() {
 		return skills;
 	}
@@ -195,7 +206,7 @@ public class AssociateEntity {
 
 	public AssociateEntity(String name, String email, int mobile, byte[] pic, String remark,
 			String strength, String weakness, boolean statusGreen, boolean statusBlue, boolean statusRed,
-			boolean level1, boolean level2, boolean level3, List<SkillsEntity> skills) {
+			boolean level1, boolean level2, boolean level3, String gender, List<SkillsEntity> skills) {
 		super();
 		//this.associateId = associateId;
 		this.name = name;
@@ -211,6 +222,7 @@ public class AssociateEntity {
 		this.level1 = level1;
 		this.level2 = level2;
 		this.level3 = level3;
+		this.gender = gender;
 		this.skills = skills;
 	}
 
@@ -225,9 +237,9 @@ public class AssociateEntity {
 		return "AssociateEntity [associateId=" + associateId + ", name=" + name + ", email=" + email + ", mobile="
 				+ mobile + ", pic=" + Arrays.toString(pic) + ", remark=" + remark + ", strength=" + strength
 				+ ", weakness=" + weakness + ", statusGreen=" + statusGreen + ", statusBlue=" + statusBlue
-				+ ", statusRed=" + statusRed + ", level1=" + level1 + ", level2=" + level2 + ", level3=" + level3 + "]";
+				+ ", statusRed=" + statusRed + ", level1=" + level1 + ", level2=" + level2 + ", level3=" + level3
+				+ ", gender=" + gender + ", skills=" + skills + "]";
 	}
-	
 	
 	
 	

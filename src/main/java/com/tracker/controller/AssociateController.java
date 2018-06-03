@@ -29,7 +29,7 @@ public class AssociateController {
 	private IAssociateService associateService;
 	
 	@RequestMapping(value="/addAssociate",method=RequestMethod.POST)
-	public String addSkill(@RequestParam(value="data",required=true) String associateData,@RequestParam(value="file",required=true) MultipartFile file) throws BusinessException {
+	public String addAssociate(@RequestParam(value="data",required=true) String associateData,@RequestParam(value="file",required=true) MultipartFile file) throws BusinessException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		AssociateModel associateModel;
 		try {
@@ -60,12 +60,7 @@ public class AssociateController {
 		return associatesList;
 		
 	}
-	
-//	@RequestMapping(value="/deleteAssociate",method=RequestMethod.POST)
-//	public String deleteAssociate(@RequestBody AssociateModel associateModel) throws BusinessException {
-//		return associateService.deleteAssociate(associateModel.getAssociateId());
-//		
-//	}
+
 	
 	@RequestMapping(value="/deleteAssociate/{associateId}",method=RequestMethod.GET)
 	public String deleteAssociate(@PathVariable int associateId) throws BusinessException {

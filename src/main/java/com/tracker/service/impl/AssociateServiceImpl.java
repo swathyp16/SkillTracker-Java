@@ -14,6 +14,7 @@ import com.tracker.dao.AssociateDao;
 import com.tracker.dao.SkillsDao;
 import com.tracker.entity.AssociateEntity;
 import com.tracker.entity.SkillsEntity;
+import com.tracker.enums.Gender;
 import com.tracker.exception.BusinessException;
 import com.tracker.model.AssociateModel;
 import com.tracker.model.SkillRatingModel;
@@ -69,6 +70,11 @@ public class AssociateServiceImpl implements IAssociateService {
 			associateModel.setLevel1(associateEntity.isLevel1());
 			associateModel.setLevel2(associateEntity.isLevel2());
 			associateModel.setLevel3(associateEntity.isLevel3());
+			if(Gender.MALE.getValue().equalsIgnoreCase(associateEntity.getGender())) {
+				associateModel.setGender(Gender.MALE.name().toLowerCase());
+			}else if(Gender.FEMALE.getValue().equalsIgnoreCase(associateEntity.getGender())) {
+				associateModel.setGender(Gender.FEMALE.name().toLowerCase());
+			}
 			associatesList.add(associateModel);
 		}
 		findApplicableAssociateIds(associatesList);
@@ -138,6 +144,11 @@ public class AssociateServiceImpl implements IAssociateService {
 		associateEntity.setLevel1(associateModel.isLevel1());
 		associateEntity.setLevel2(associateModel.isLevel2());
 		associateEntity.setLevel3(associateModel.isLevel3());
+		if(Gender.MALE.name().equalsIgnoreCase(associateModel.getGender())) {
+			associateEntity.setGender(Gender.MALE.getValue());
+		} else if(Gender.FEMALE.name().equalsIgnoreCase(associateModel.getGender())) {
+			associateEntity.setGender(Gender.FEMALE.getValue());
+		}		
 		byte[] picInBytes;
 		try {
 			picInBytes = convertMultipartfileToBytes(file);

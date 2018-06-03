@@ -24,6 +24,7 @@ public class AssociateDao {
 	
 	
 	public void addAssociate(AssociateEntity associateEntity) {
+		System.out.println("associateEntity : "+ associateEntity.toString());
 		associateRepository.save(associateEntity);
 	}
 	

@@ -32,8 +32,18 @@ public class AssociateModel {
 	
 	private boolean level2;
 	
-	private boolean level3;	
+	private boolean level3;
 	
+	private String gender;	
+	
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
 	public boolean isStatusGreen() {
 		return statusGreen;
@@ -161,9 +171,8 @@ public class AssociateModel {
 				+ mobileNum + ", remark=" + remark + ", associateSkills=" + associateSkills + ", otherSkill="
 				+ otherSkill + ", strength=" + strength + ", weakness=" + weakness + ", statusGreen=" + statusGreen
 				+ ", statusBlue=" + statusBlue + ", statusRed=" + statusRed + ", level1=" + level1 + ", level2="
-				+ level2 + ", level3=" + level3 + "]";
-	}	
-	
+				+ level2 + ", level3=" + level3 + ", gender=" + gender + "]";
+	}
 	
 
 }
