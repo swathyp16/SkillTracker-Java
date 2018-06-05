@@ -29,7 +29,7 @@ public class AssociateController {
 	private IAssociateService associateService;
 	
 	@RequestMapping(value="/addAssociate",method=RequestMethod.POST)
-	public String addAssociate(@RequestParam(value="data",required=true) String associateData,@RequestParam(value="file",required=true) MultipartFile file) throws BusinessException {
+	public String addAssociate(@RequestParam(value="data",required=true) String associateData,@RequestParam(value="file",required=false) MultipartFile file) throws BusinessException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		AssociateModel associateModel;
 		try {

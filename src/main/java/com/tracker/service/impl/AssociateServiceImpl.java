@@ -150,12 +150,16 @@ public class AssociateServiceImpl implements IAssociateService {
 			associateEntity.setGender(Gender.FEMALE.getValue());
 		}		
 		byte[] picInBytes;
-		try {
-			picInBytes = convertMultipartfileToBytes(file);
-		} catch (IOException e) {
-			throw new BusinessException(e.toString());
+		if(file != null) {
+			try {
+				picInBytes = convertMultipartfileToBytes(file);
+			} catch (IOException e) {
+				throw new BusinessException(e.toString());
+			}
+			associateEntity.setPic(picInBytes);
+		} else {
+			associateEntity.setPic(getAssociatePicture(associateModel.getAssociateId()));
 		}
-		associateEntity.setPic(picInBytes);
 	}
 	
 	private byte[] convertMultipartfileToBytes(MultipartFile file) throws IOException {
