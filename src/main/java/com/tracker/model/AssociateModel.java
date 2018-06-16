@@ -10,7 +10,7 @@ public class AssociateModel {
 	
 	private String email;
 	
-	private int mobileNum;
+	private long mobileNum;
 	
 	private String remark;
 	
@@ -117,11 +117,11 @@ public class AssociateModel {
 		this.email = email;
 	}
 
-	public int getMobileNum() {
+	public long getMobileNum() {
 		return mobileNum;
 	}
 
-	public void setMobileNum(int mobileNum) {
+	public void setMobileNum(long mobileNum) {
 		this.mobileNum = mobileNum;
 	}
 

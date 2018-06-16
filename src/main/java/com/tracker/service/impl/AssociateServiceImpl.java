@@ -1,6 +1,7 @@
 package com.tracker.service.impl;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class AssociateServiceImpl implements IAssociateService {
 			associateModel.setAssociateId(associateEntity.getAssociateId());
 			associateModel.setName(associateEntity.getName());
 			associateModel.setEmail(associateEntity.getEmail());
-			associateModel.setMobileNum(associateEntity.getMobile());
+			associateModel.setMobileNum(associateEntity.getMobile().longValue());
 			associateModel.setRemark(associateEntity.getRemark());
 			associateModel.setStrength(associateEntity.getStrength());
 			associateModel.setWeakness(associateEntity.getWeakness());
@@ -134,7 +135,7 @@ public class AssociateServiceImpl implements IAssociateService {
 		associateEntity.setAssociateId(associateModel.getAssociateId());
 		associateEntity.setName(associateModel.getName());
 		associateEntity.setEmail(associateModel.getEmail());
-		associateEntity.setMobile(associateModel.getMobileNum());
+		associateEntity.setMobile(BigInteger.valueOf(associateModel.getMobileNum()));
 		associateEntity.setRemark(associateModel.getRemark());
 		associateEntity.setStrength(associateModel.getStrength());
 		associateEntity.setWeakness(associateModel.getWeakness());

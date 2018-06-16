@@ -2,6 +2,7 @@ package com.tracker.service.impl;
 
 import static org.junit.Assert.*;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,7 +109,7 @@ public class AssociateServiceImplTest {
 		associateEntity.setAssociateId(123);
 		associateEntity.setName("ABC");
 		associateEntity.setEmail("a@aol.com");
-		associateEntity.setMobile(9995);
+		associateEntity.setMobile(new BigInteger("9876543210"));
 		associateEntity.setLevel1(true);
 		associateEntity.setLevel2(false);
 		associateEntity.setLevel3(false);

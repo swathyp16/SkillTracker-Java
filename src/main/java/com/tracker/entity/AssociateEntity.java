@@ -1,5 +1,6 @@
 package com.tracker.entity;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class AssociateEntity {
 	private String email;
 	
 	@Column(name="mobile")
-	private int mobile;
+	private BigInteger mobile;
 	
 	@Column(name="pic")
 	private byte[] pic;
@@ -94,11 +95,11 @@ public class AssociateEntity {
 		this.email = email;
 	}
 
-	public int getMobile() {
+	public BigInteger getMobile() {
 		return mobile;
 	}
 
-	public void setMobile(int mobile) {
+	public void setMobile(BigInteger mobile) {
 		this.mobile = mobile;
 	}
 
@@ -204,7 +205,7 @@ public class AssociateEntity {
 
 	
 
-	public AssociateEntity(String name, String email, int mobile, byte[] pic, String remark,
+	public AssociateEntity(String name, String email, BigInteger mobile, byte[] pic, String remark,
 			String strength, String weakness, boolean statusGreen, boolean statusBlue, boolean statusRed,
 			boolean level1, boolean level2, boolean level3, String gender, List<SkillsEntity> skills) {
 		super();
