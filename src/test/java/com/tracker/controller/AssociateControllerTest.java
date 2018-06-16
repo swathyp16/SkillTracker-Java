@@ -15,10 +15,14 @@ import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tracker.constants.CommonConstants;
 import com.tracker.exception.BusinessException;
 import com.tracker.model.AssociateModel;
+import com.tracker.model.SkillsModel;
 import com.tracker.service.impl.AssociateServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -30,12 +34,13 @@ public class AssociateControllerTest {
 	@Mock
 	private AssociateServiceImpl associateService;
 	
-	private String associateData;
+	private MultipartFile file;
 	private AssociateModel associateModel;
 	private byte[] pic;
 	private byte[] picExp;
 	private List<AssociateModel> actualResult;
-	private List<AssociateModel> expectedResult;	
+	private List<AssociateModel> expectedResult;
+	private byte[] imageFile;
 
 	@Before
 	public void setupMock() {
@@ -44,24 +49,35 @@ public class AssociateControllerTest {
 		associateModel = new  AssociateModel();
 		associateModel.setAssociateId(123);
 		associateModel.setName("ABC");
+		associateModel.setEmail("a@aol.com");
+		associateModel.setAssociateSkills(new ArrayList<SkillsModel>());
+		associateModel.setMobileNum(9995);
+		associateModel.setLevel1(true);
+		associateModel.setLevel2(false);
+		associateModel.setLevel3(false);
+		associateModel.setRemark("Remark");
+		associateModel.setStatusBlue(true);
+		associateModel.setStatusGreen(false);
+		associateModel.setStatusRed(false);
+		//associateModel.setOther("Other");
+		associateModel.setStrength("Strength");
+		associateModel.setWeakness("Weakness");
+		associateModel.setGender("male");
 		actualResult = new ArrayList<>();
 		actualResult.add(associateModel);
 		expectedResult = new ArrayList<>();
 		expectedResult.add(associateModel);
-		//associateData =  {"associateSkills":[{"skillId":4,"skillName":"CSS3","skillRating":"14"},{"skillId":4,"skillName":"CSS3","skillRating":"14"}],"statusGreen":false,"statusRed":false,"statusBlue":false,"level1":false,"level2":false,"level3":false,"name":"Anjaly","associateId":"3456","email":"swathy,p16@gmail.com","mobileNum":"21582","remark":"dfdfd","gender":"female","otherSkill":"other skills","strength":"java","weakness":"Python"}
-
 	}
 	
 	@Test
-	@Ignore
-	public void testAddAssociate() throws BusinessException {	
-		Mockito.when(associateService.addAssociate(associateModel, null)).thenReturn(CommonConstants.SUCCESS_STRING);
-		String actualResult = associateController.addAssociate(associateData, null);
-		Assert.assertNotNull(actualResult);
-		Assert.assertEquals(CommonConstants.SUCCESS_STRING, actualResult);
+	public void testAddAssociate() throws BusinessException, JsonProcessingException {	
+		ObjectMapper mapper = new ObjectMapper();		
+		String jsonString = mapper.writeValueAsString(associateModel);
+		String actualResult = associateController.addAssociate(jsonString, file);
+		Assert.assertNull(actualResult);
 		
 	}
-	
+	 
 	@Test
 	public void testViewAllAssociates() throws BusinessException {		
 		Mockito.when(associateService.fetchAllAssociateDetails()).thenReturn(expectedResult);
@@ -87,4 +103,13 @@ public class AssociateControllerTest {
 		Assert.assertNotNull(actualResult);
 		Assert.assertEquals(CommonConstants.SUCCESS_STRING, actualResult);		
 	}
+	
+//	@Test//(expected=Exception.class)
+//	public void testAddAssociateBusinessException() throws BusinessException, JsonProcessingException {	
+//		ObjectMapper mapper = new ObjectMapper();		
+//		String jsonString = mapper.writeValueAsString(associateModel);
+//		Mockito.when(associateService.addAssociate(associateModel, file)).thenThrow(Exception.class);
+//		associateController.addAssociate(jsonString, file);
+//		
+//	}
 }

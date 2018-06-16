@@ -26,7 +26,6 @@ public class SkillServiceImpl implements ISkillService{
 		skillsEntity.setSkillName(skillsModel.getSkillName());
 		skillsDao.addSkills(skillsEntity);
 		return CommonConstants.SUCCESS_STRING; 
-		
 	}
 	
 	public List<SkillsModel> viewAllSkills() {

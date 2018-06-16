@@ -24,9 +24,8 @@ public class AssociateDao {
 	
 	
 	public void addAssociate(AssociateEntity associateEntity) {
-		System.out.println("associateEntity : "+ associateEntity.toString());
 		associateRepository.save(associateEntity);
-	}
+	} 
 	
 	public void addAssociateSkills(List<AssociateSkillsEntity> associateSkillsEntity) {
 		associateSkillsRepository.saveAll(associateSkillsEntity);
@@ -40,7 +39,7 @@ public class AssociateDao {
 		return associateRepository.findAll();
 	}
 	
-	public List<SkillRatingModel> fetchAssociateSkills(Integer associateId) {
+	public List<SkillRatingModel> fetchAssociateSkills(Integer associateId) { 
 		List<SkillRatingModel> skillIdList = new ArrayList<SkillRatingModel>();
 		SkillRatingModel skillRatingModel = null;
 		List<AssociateSkillsEntity> associateSkillsList = associateSkillsRepository.findSkillsById(associateId);
@@ -53,7 +52,7 @@ public class AssociateDao {
 			}
 		}	
 		return skillIdList;
-	}	
+	}	 
 	
 	public void deleteAssociate(int associateId) {
 		associateRepository.deleteById(associateId);

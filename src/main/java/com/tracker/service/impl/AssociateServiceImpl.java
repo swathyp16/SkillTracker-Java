@@ -26,7 +26,7 @@ public class AssociateServiceImpl implements IAssociateService {
 
 	@Autowired
 	private AssociateDao associateDao;
-	
+	 
 	@Autowired
 	private SkillsDao skillsDao;
 
@@ -36,7 +36,7 @@ public class AssociateServiceImpl implements IAssociateService {
 		mapAssociateSkills(associateModel,associateEntity);
 		associateDao.addAssociate(associateEntity);
 		saveAssociateRating(associateModel);
-		return CommonConstants.SUCCESS_STRING; 
+		return CommonConstants.SUCCESS_STRING;  
 		
 	}
 	
