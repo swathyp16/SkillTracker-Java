@@ -63,6 +63,9 @@ public class AssociateEntity {
 	@Column(name="gender")
 	private String gender;
 	
+	@Column(name="other_skill")
+	private String otherSkill;
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "associate_skills", joinColumns = { 
 			@JoinColumn(name = "associate_id", nullable = false, updatable = false) }, 
@@ -199,6 +202,15 @@ public class AssociateEntity {
 		this.skills = skills;
 	}
 	
+	
+	public String getOtherSkill() {
+		return otherSkill;
+	}
+
+	public void setOtherSkill(String otherSkill) {
+		this.otherSkill = otherSkill;
+	}
+
 	public AssociateEntity() {
 		// TODO Auto-generated constructor stub
 	}
@@ -207,7 +219,7 @@ public class AssociateEntity {
 
 	public AssociateEntity(String name, String email, BigInteger mobile, byte[] pic, String remark,
 			String strength, String weakness, boolean statusGreen, boolean statusBlue, boolean statusRed,
-			boolean level1, boolean level2, boolean level3, String gender, List<SkillsEntity> skills) {
+			boolean level1, boolean level2, boolean level3, String gender, String otherSkill, List<SkillsEntity> skills) {
 		super();
 		//this.associateId = associateId;
 		this.name = name;
@@ -224,6 +236,7 @@ public class AssociateEntity {
 		this.level2 = level2;
 		this.level3 = level3;
 		this.gender = gender;
+		this.otherSkill = otherSkill;
 		this.skills = skills;
 	}
 
@@ -239,8 +252,8 @@ public class AssociateEntity {
 				+ mobile + ", pic=" + Arrays.toString(pic) + ", remark=" + remark + ", strength=" + strength
 				+ ", weakness=" + weakness + ", statusGreen=" + statusGreen + ", statusBlue=" + statusBlue
 				+ ", statusRed=" + statusRed + ", level1=" + level1 + ", level2=" + level2 + ", level3=" + level3
-				+ ", gender=" + gender + ", skills=" + skills + "]";
-	}
+				+ ", gender=" + gender + ", otherSkill=" + otherSkill + ", skills=" + skills + "]";
+	}	
 	
 	
 	

@@ -71,6 +71,7 @@ public class AssociateServiceImpl implements IAssociateService {
 			associateModel.setLevel1(associateEntity.isLevel1());
 			associateModel.setLevel2(associateEntity.isLevel2());
 			associateModel.setLevel3(associateEntity.isLevel3());
+			associateModel.setOtherSkill(associateEntity.getOtherSkill());
 			if(Gender.MALE.getValue().equalsIgnoreCase(associateEntity.getGender())) {
 				associateModel.setGender(Gender.MALE.name().toLowerCase());
 			}else if(Gender.FEMALE.getValue().equalsIgnoreCase(associateEntity.getGender())) {
@@ -145,6 +146,7 @@ public class AssociateServiceImpl implements IAssociateService {
 		associateEntity.setLevel1(associateModel.isLevel1());
 		associateEntity.setLevel2(associateModel.isLevel2());
 		associateEntity.setLevel3(associateModel.isLevel3());
+		associateEntity.setOtherSkill(associateModel.getOtherSkill());
 		if(Gender.MALE.name().equalsIgnoreCase(associateModel.getGender())) {
 			associateEntity.setGender(Gender.MALE.getValue());
 		} else if(Gender.FEMALE.name().equalsIgnoreCase(associateModel.getGender())) {
