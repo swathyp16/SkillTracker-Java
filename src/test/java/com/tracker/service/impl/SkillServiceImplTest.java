@@ -18,25 +18,39 @@ import com.tracker.dao.SkillsDao;
 import com.tracker.entity.SkillsEntity;
 import com.tracker.model.SkillsModel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SkillServiceImplTest.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class SkillServiceImplTest {
 
+	/** The skill service impl. */
 	@InjectMocks
 	private SkillServiceImpl skillServiceImpl;
 	
+	/** The skills dao. */
 	@Mock
 	private SkillsDao skillsDao;
 	
+	/** The skills model. */
 	private SkillsModel skillsModel;
 	
+	/** The skills list. */
 	private List<SkillsModel> skillsList;
 	
+	/** The skill entity list. */
 	private List<SkillsEntity> skillEntityList;
 	
+	/** The skills entity. */
 	private SkillsEntity skillsEntity;
 	
+	/** The expected. */
 	List<SkillsModel> expected;
 	
+	/**
+	 * Setup mock.
+	 */
 	@Before
 	public void setupMock() {
 		skillsModel = new SkillsModel();
@@ -54,12 +68,18 @@ public class SkillServiceImplTest {
 		skillEntityList.add(skillsEntity);
 	}
 	
+	/**
+	 * Test add skill.
+	 */
 	@Test
 	public void testAddSkill() {		
 		String actual = skillServiceImpl.addSkill(skillsModel);
 		assertEquals(CommonConstants.SUCCESS_STRING, actual);
 	}
 	
+	/**
+	 * Test view all skills.
+	 */
 	@Test
 	public void testViewAllSkills() {			
 		Mockito.when(skillsDao.viewAllSkills()).thenReturn(skillEntityList);
@@ -68,6 +88,9 @@ public class SkillServiceImplTest {
 		assertEquals(expected.get(0).getSkillName(), actual.get(0).getSkillName());
 	}
 	
+	/**
+	 * Test delete skill.
+	 */
 	@Test
 	public void testDeleteSkill() {		
 		String actual = skillServiceImpl.deleteSkill(skillsModel);

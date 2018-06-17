@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -25,23 +24,45 @@ import com.tracker.model.AssociateModel;
 import com.tracker.model.SkillsModel;
 import com.tracker.service.impl.AssociateServiceImpl;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AssociateControllerTest.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class AssociateControllerTest {
 
+	/** The associate controller. */
 	@InjectMocks
 	private AssociateController associateController;
 	
+	/** The associate service. */
 	@Mock
 	private AssociateServiceImpl associateService;
 	
+	/** The file. */
 	private MultipartFile file;
+	
+	/** The associate model. */
 	private AssociateModel associateModel;
+	
+	/** The pic. */
 	private byte[] pic;
+	
+	/** The pic exp. */
 	private byte[] picExp;
+	
+	/** The actual result. */
 	private List<AssociateModel> actualResult;
+	
+	/** The expected result. */
 	private List<AssociateModel> expectedResult;
+	
+	/** The image file. */
 	private byte[] imageFile;
 
+	/**
+	 * Setup mock.
+	 */
 	@Before
 	public void setupMock() {
 		pic = new byte[12];
@@ -59,7 +80,6 @@ public class AssociateControllerTest {
 		associateModel.setStatusBlue(true);
 		associateModel.setStatusGreen(false);
 		associateModel.setStatusRed(false);
-		//associateModel.setOther("Other");
 		associateModel.setStrength("Strength");
 		associateModel.setWeakness("Weakness");
 		associateModel.setGender("male");
@@ -69,6 +89,12 @@ public class AssociateControllerTest {
 		expectedResult.add(associateModel);
 	}
 	
+	/**
+	 * Test add associate.
+	 *
+	 * @throws BusinessException the business exception
+	 * @throws JsonProcessingException the json processing exception
+	 */
 	@Test
 	public void testAddAssociate() throws BusinessException, JsonProcessingException {	
 		ObjectMapper mapper = new ObjectMapper();		
@@ -78,6 +104,11 @@ public class AssociateControllerTest {
 		
 	}
 	 
+	/**
+	 * Test view all associates.
+	 *
+	 * @throws BusinessException the business exception
+	 */
 	@Test
 	public void testViewAllAssociates() throws BusinessException {		
 		Mockito.when(associateService.fetchAllAssociateDetails()).thenReturn(expectedResult);
@@ -87,6 +118,11 @@ public class AssociateControllerTest {
 		
 	}
 	
+	/**
+	 * Test get associate pic.
+	 *
+	 * @throws BusinessException the business exception
+	 */
 	@Test
 	public void testGetAssociatePic() throws BusinessException {		
 		Mockito.when(associateService.getAssociatePicture(1234)).thenReturn(pic);
@@ -96,6 +132,11 @@ public class AssociateControllerTest {
 		
 	}
 	
+	/**
+	 * Test delete associate.
+	 *
+	 * @throws BusinessException the business exception
+	 */
 	@Test
 	public void testDeleteAssociate() throws BusinessException {		
 		Mockito.when(associateService.deleteAssociate(Matchers.anyInt())).thenReturn(CommonConstants.SUCCESS_STRING);
@@ -103,13 +144,5 @@ public class AssociateControllerTest {
 		Assert.assertNotNull(actualResult);
 		Assert.assertEquals(CommonConstants.SUCCESS_STRING, actualResult);		
 	}
-	
-//	@Test//(expected=Exception.class)
-//	public void testAddAssociateBusinessException() throws BusinessException, JsonProcessingException {	
-//		ObjectMapper mapper = new ObjectMapper();		
-//		String jsonString = mapper.writeValueAsString(associateModel);
-//		Mockito.when(associateService.addAssociate(associateModel, file)).thenThrow(Exception.class);
-//		associateController.addAssociate(jsonString, file);
-//		
-//	}
 }
+	

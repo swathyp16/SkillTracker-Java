@@ -22,15 +22,24 @@ import com.tracker.model.SkillRatingModel;
 import com.tracker.model.SkillsModel;
 import com.tracker.service.intf.IAssociateService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AssociateServiceImpl.
+ */
 @Component
 public class AssociateServiceImpl implements IAssociateService {
 
+	/** The associate dao. */
 	@Autowired
 	private AssociateDao associateDao;
 	 
+	/** The skills dao. */
 	@Autowired
 	private SkillsDao skillsDao;
 
+	/* (non-Javadoc)
+	 * @see com.tracker.service.intf.IAssociateService#addAssociate(com.tracker.model.AssociateModel, org.springframework.web.multipart.MultipartFile)
+	 */
 	public String addAssociate(AssociateModel associateModel,MultipartFile file) throws BusinessException {
 		AssociateEntity associateEntity = new AssociateEntity();
 		setDataToAssociateEntity(associateEntity, associateModel,file);
@@ -41,6 +50,11 @@ public class AssociateServiceImpl implements IAssociateService {
 		
 	}
 	
+	/**
+	 * Save associate rating.
+	 *
+	 * @param associateModel the associate model
+	 */
 	private void saveAssociateRating(AssociateModel associateModel) {
 		for(SkillsModel skillsModel : associateModel.getAssociateSkills()) {
 			associateDao.saveSkillRating(skillsModel.getSkillId(),associateModel.getAssociateId(),skillsModel.getSkillRating());
@@ -48,10 +62,16 @@ public class AssociateServiceImpl implements IAssociateService {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tracker.service.intf.IAssociateService#getAssociatePicture(int)
+	 */
 	public byte[] getAssociatePicture(int id) {
 		return associateDao.getPicUploaded(id);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tracker.service.intf.IAssociateService#fetchAllAssociateDetails()
+	 */
 	public List<AssociateModel> fetchAllAssociateDetails() {
 		List<AssociateEntity> associateEntities = associateDao.fetchAllAssociateDetails();
 		List<AssociateModel> associatesList = new ArrayList<AssociateModel>();
@@ -83,6 +103,11 @@ public class AssociateServiceImpl implements IAssociateService {
 		return associatesList;
 	}
 	
+	/**
+	 * Find applicable associate ids.
+	 *
+	 * @param associatesList the associates list
+	 */
 	private void findApplicableAssociateIds(List<AssociateModel> associatesList) {
 		List<Integer> associateIdList = associateDao.fetchDistinctAssociates();
 		for(Integer associateId : associateIdList) {
@@ -106,6 +131,12 @@ public class AssociateServiceImpl implements IAssociateService {
 		
 	}	
 	
+	/**
+	 * Fetch all skill ids.
+	 *
+	 * @param skillRatingModel the skill rating model
+	 * @return the list
+	 */
 	private List<Integer> fetchAllSkillIds(List<SkillRatingModel> skillRatingModel){
 		List<Integer> skillIdList = new ArrayList<Integer>();
 		for(SkillRatingModel model :skillRatingModel) {
@@ -114,6 +145,14 @@ public class AssociateServiceImpl implements IAssociateService {
 		return skillIdList;
 		
 	}
+		
+		/**
+		 * Sets the skill to associate model.
+		 *
+		 * @param associatesList the associates list
+		 * @param associateId the associate id
+		 * @param skillsModel the skills model
+		 */
 		private void setSkillToAssociateModel(List<AssociateModel> associatesList,Integer associateId,SkillsModel skillsModel){
 			int i = 0;
 			List<SkillsModel>  newSkillList = new ArrayList<SkillsModel>();
@@ -132,6 +171,14 @@ public class AssociateServiceImpl implements IAssociateService {
 		}
 
 	
+	/**
+	 * Sets the data to associate entity.
+	 *
+	 * @param associateEntity the associate entity
+	 * @param associateModel the associate model
+	 * @param file the file
+	 * @throws BusinessException the business exception
+	 */
 	private void setDataToAssociateEntity(AssociateEntity associateEntity,AssociateModel associateModel,MultipartFile file) throws BusinessException {
 		associateEntity.setAssociateId(associateModel.getAssociateId());
 		associateEntity.setName(associateModel.getName());
@@ -165,6 +212,13 @@ public class AssociateServiceImpl implements IAssociateService {
 		}
 	}
 	
+	/**
+	 * Convert multipartfile to bytes.
+	 *
+	 * @param file the file
+	 * @return the byte[]
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private byte[] convertMultipartfileToBytes(MultipartFile file) throws IOException {
 		try {
 			return  file.getBytes();
@@ -173,6 +227,12 @@ public class AssociateServiceImpl implements IAssociateService {
 		}
 	}
 	
+	/**
+	 * Map associate skills.
+	 *
+	 * @param associateModel the associate model
+	 * @param associateEntity the associate entity
+	 */
 	private void mapAssociateSkills(AssociateModel associateModel,AssociateEntity associateEntity) {
 		List<SkillsEntity> skillsEntityList = new ArrayList<SkillsEntity>();
 		SkillsEntity skillsEntity = null;
@@ -186,6 +246,9 @@ public class AssociateServiceImpl implements IAssociateService {
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.tracker.service.intf.IAssociateService#deleteAssociate(int)
+	 */
 	public String deleteAssociate(int id) {
 		associateDao.deleteAssociate(id);
 		return CommonConstants.SUCCESS_STRING; 

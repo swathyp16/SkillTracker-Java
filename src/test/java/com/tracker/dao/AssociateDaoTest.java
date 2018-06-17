@@ -19,40 +19,61 @@ import com.tracker.model.SkillRatingModel;
 import com.tracker.repository.AssociateRepository;
 import com.tracker.repository.AssociateSkillsRepository;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AssociateDaoTest.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class AssociateDaoTest {
 
+	/** The associate dao. */
 	@InjectMocks
 	private AssociateDao associateDao;
 	
+	/** The associate repository. */
 	@Mock
 	private AssociateRepository associateRepository;
 	
+	/** The associate skills repository. */
 	@Mock
 	private AssociateSkillsRepository associateSkillsRepository;	
 	
+	/** The associate entity. */
 	private AssociateEntity associateEntity;
 	
+	/** The associate skills entity list. */
 	private List<AssociateSkillsEntity> associateSkillsEntityList;
 	
+	/** The associate skills entity. */
 	private AssociateSkillsEntity associateSkillsEntity;
 	
+	/** The byte value. */
 	private byte[] byteValue;
 	
+	/** The expected. */
 	private byte[] expected;
 	
+	/** The associate entity list. */
 	private List<AssociateEntity> associateEntityList;
 	
+	/** The expected list. */
 	private List<AssociateEntity> expectedList;
 	
+	/** The associate id list. */
 	private List<Integer> associateIdList;
 	
+	/** The associate id list exp. */
 	private List<Integer> associateIdListExp;	
 	
+	/** The expected skill rating. */
 	private List<SkillRatingModel> expectedSkillRating;
 	
+	/** The skill rating model. */
 	private SkillRatingModel skillRatingModel;
 	
+	/**
+	 * Setup mock.
+	 */
 	@Before
 	public void setupMock() {
 		associateEntity = new AssociateEntity();
@@ -91,18 +112,27 @@ public class AssociateDaoTest {
 	}
 
 	
+	/**
+	 * Test add associate.
+	 */
 	@Test
 	public void testAddAssociate() {
 		Mockito.when(associateRepository.save(associateEntity)).thenReturn(associateEntity);
 		associateDao.addAssociate(associateEntity);
 	}
 	
+	/**
+	 * Test add associate skills.
+	 */
 	@Test
 	public void testAddAssociateSkills() {
 		Mockito.when(associateSkillsRepository.saveAll(associateSkillsEntityList)).thenReturn(associateSkillsEntityList);		
 		associateDao.addAssociateSkills(associateSkillsEntityList);
 	}
 
+	/**
+	 * Test get pic uploaded.
+	 */
 	@Test
 	public void testGetPicUploaded() {		
 		Mockito.when(associateRepository.findPicById(12)).thenReturn(byteValue);
@@ -110,6 +140,9 @@ public class AssociateDaoTest {
 		assertEquals(expected.length, actual.length);
 	}
 	
+	/**
+	 * Test fetch all associate details.
+	 */
 	@Test
 	public void testFetchAllAssociateDetails() {		
 		Mockito.when(associateRepository.findAll()).thenReturn(associateEntityList);
@@ -117,6 +150,9 @@ public class AssociateDaoTest {
 		assertEquals(expectedList.get(0).getAssociateId(), actual.get(0).getAssociateId());
 	}
 	
+	/**
+	 * Test fetch distinct associates.
+	 */
 	@Test
 	public void testFetchDistinctAssociates() {		
 		Mockito.when(associateRepository.fetchDistinctAssociates()).thenReturn(associateIdList);
@@ -124,6 +160,9 @@ public class AssociateDaoTest {
 		assertEquals(associateIdListExp.get(0), actual.get(0));
 	}
 	
+	/**
+	 * Test fetch associate skills.
+	 */
 	@Test
 	public void testFetchAssociateSkills() {		
 		Mockito.when(associateSkillsRepository.findSkillsById(12345)).thenReturn(associateSkillsEntityList);
@@ -133,11 +172,17 @@ public class AssociateDaoTest {
 	}
 	
 
+	/**
+	 * Test save skill rating.
+	 */
 	@Test
 	public void testSaveSkillRating() {
 		associateDao.saveSkillRating(12345, 12, 10);
 	}
 	
+	/**
+	 * Test delete associate.
+	 */
 	@Test
 	public void testDeleteAssociate() {
 		associateDao.deleteAssociate(12345);

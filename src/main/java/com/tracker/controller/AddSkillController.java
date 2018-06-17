@@ -13,13 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tracker.model.SkillsModel;
 import com.tracker.service.intf.ISkillService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AddSkillController.
+ */
 @CrossOrigin("http://localhost:4200")
 @RestController
 public class AddSkillController {
 
+	/** The skill service. */
 	@Autowired
 	private ISkillService skillService;
 	
+	/**
+	 * Adds the skill.
+	 *
+	 * @param skillsModel the skills model
+	 * @return the string
+	 */
 	@RequestMapping(value="/addSkill",method=RequestMethod.POST)
 	public String addSkill(@RequestBody SkillsModel skillsModel) {
 		String responseString = null;
@@ -32,6 +43,11 @@ public class AddSkillController {
 		
 	}
 	
+	/**
+	 * View all skills.
+	 *
+	 * @return the list
+	 */
 	@RequestMapping(value="/viewAllSkills",method=RequestMethod.GET)
 	public List<SkillsModel> viewAllSkills() {
 		List<SkillsModel> skillList = new ArrayList<SkillsModel>();
@@ -44,6 +60,12 @@ public class AddSkillController {
 		
 	}
 	
+	/**
+	 * Delete skill.
+	 *
+	 * @param skillsModel the skills model
+	 * @return the string
+	 */
 	@RequestMapping(value="/deleteSkill",method=RequestMethod.POST)
 	public String deleteSkill(@RequestBody SkillsModel skillsModel) {
 		String responseString = null;
