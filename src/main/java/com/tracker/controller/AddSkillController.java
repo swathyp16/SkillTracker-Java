@@ -31,7 +31,7 @@ public class AddSkillController {
 	 * @param skillsModel the skills model
 	 * @return the string
 	 */
-	@RequestMapping(value="/skillTracker/addSkill",method=RequestMethod.POST)
+	@RequestMapping(value="/addSkill",method=RequestMethod.POST)
 	public String addSkill(@RequestBody SkillsModel skillsModel) {
 		String responseString = null;
 		try {
@@ -48,7 +48,7 @@ public class AddSkillController {
 	 *
 	 * @return the list
 	 */
-	@RequestMapping(value="/skillTracker/viewAllSkills",method=RequestMethod.GET)
+	@RequestMapping(value="/viewAllSkills",method=RequestMethod.GET)
 	public List<SkillsModel> viewAllSkills() {
 		List<SkillsModel> skillList = new ArrayList<SkillsModel>();
 		try {
@@ -66,7 +66,7 @@ public class AddSkillController {
 	 * @param skillsModel the skills model
 	 * @return the string
 	 */
-	@RequestMapping(value="/skillTracker/deleteSkill",method=RequestMethod.POST)
+	@RequestMapping(value="/deleteSkill",method=RequestMethod.POST)
 	public String deleteSkill(@RequestBody SkillsModel skillsModel) {
 		String responseString = null;
 		try {
