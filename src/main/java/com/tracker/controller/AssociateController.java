@@ -40,7 +40,7 @@ public class AssociateController {
 	 * @return the string
 	 * @throws BusinessException the business exception
 	 */
-	@RequestMapping(value="/addAssociate",method=RequestMethod.POST)
+	@RequestMapping(value="/skillTracker/addAssociate",method=RequestMethod.POST)
 	public String addAssociate(@RequestParam(value="data",required=true) String associateData,@RequestParam(value="file",required=false) MultipartFile file) throws BusinessException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		AssociateModel associateModel;
@@ -66,7 +66,7 @@ public class AssociateController {
 	 * @return the associate pic
 	 * @throws BusinessException the business exception
 	 */
-	@RequestMapping(value="/getAssociatePic/{id}",method=RequestMethod.GET, produces = {MediaType.IMAGE_JPEG_VALUE , MediaType.IMAGE_PNG_VALUE})
+	@RequestMapping(value="/skillTracker/getAssociatePic/{id}",method=RequestMethod.GET, produces = {MediaType.IMAGE_JPEG_VALUE , MediaType.IMAGE_PNG_VALUE})
 	public byte[] getAssociatePic(@PathVariable int id) throws BusinessException {
 		return associateService.getAssociatePicture(id);
 		
@@ -79,7 +79,7 @@ public class AssociateController {
 	 * @return the list
 	 * @throws BusinessException the business exception
 	 */
-	@RequestMapping(value="/viewAllAssociates",method=RequestMethod.GET)
+	@RequestMapping(value="/skillTracker/viewAllAssociates",method=RequestMethod.GET)
 	public List<AssociateModel> viewAllAssociates() throws BusinessException {
 		List<AssociateModel> associatesList = associateService.fetchAllAssociateDetails();
 		return associatesList;
@@ -94,7 +94,7 @@ public class AssociateController {
 	 * @return the string
 	 * @throws BusinessException the business exception
 	 */
-	@RequestMapping(value="/deleteAssociate/{associateId}",method=RequestMethod.GET)
+	@RequestMapping(value="/skillTracker/deleteAssociate/{associateId}",method=RequestMethod.GET)
 	public String deleteAssociate(@PathVariable int associateId) throws BusinessException {
 		return associateService.deleteAssociate(associateId);
 		
