@@ -17,7 +17,7 @@ import com.tracker.service.intf.ISkillService;
 /**
  * The Class AddSkillController.
  */
-@CrossOrigin(origins="*.*")
+@CrossOrigin(origins="*")
 @RestController
 public class AddSkillController {
 
