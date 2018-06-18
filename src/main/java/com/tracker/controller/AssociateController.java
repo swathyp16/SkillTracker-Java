@@ -23,7 +23,7 @@ import com.tracker.service.intf.IAssociateService;
 /**
  * The Class AssociateController.
  */
-@CrossOrigin
+@CrossOrigin(origins="*.*")
 @RestController
 public class AssociateController {
 	
