@@ -9,6 +9,6 @@ select associate_id ,name ,email ,mobile,remark ,strength , weakness  from assoc
 
  ALTER TABLE associate ADD COLUMN gender varchar(1);
 
-alter table associate modify mobile BIGINTEGER;
+alter table associate modify mobile BIGINT;
 
 alter table associate ADD COLUMN other_skill varchar(25);
